@@ -1,0 +1,97 @@
+<ion-content [fullscreen]="true">
+  <ion-row>
+    <ion-col size="7"
+      ><h4>ToyRobotSimulator</h4>
+      <ion-label>Code challenge</ion-label>
+    </ion-col>
+
+    <ion-col size="1"></ion-col>
+    <ion-col size="3">
+      <img class="imgStyle" src="../../assets/direction.jpeg" />
+    </ion-col>
+  </ion-row>
+
+  <hr color="lightgrey" />
+
+  <!-- Display X position -->
+  <ion-row>
+    <ion-col size="3">
+      <ion-label> Select X:</ion-label
+      ><ion-select
+        [interfaceOptions]="customPopupX"
+        interface="popover"
+        [(ngModel)]="posX"
+        placeholder="0"
+      >
+        <ion-select-option *ngFor="let x of X" value="{{x.val}}"
+          >{{x.id}}
+        </ion-select-option>
+      </ion-select>
+    </ion-col>
+
+    <!-- Display Y position -->
+    <ion-col size="3">
+      <ion-label> Select Y:</ion-label
+      ><ion-select
+        [interfaceOptions]="customPopupY"
+        interface="popover"
+        [(ngModel)]="posY"
+        placeholder="0"
+      >
+        <ion-select-option *ngFor="let y of Y" value="{{y.val}}"
+          >{{y.id}}
+        </ion-select-option>
+      </ion-select>
+    </ion-col>
+
+    <!-- Display direction list -->
+    <ion-col size="6">
+      <ion-label>Select Face:</ion-label
+      ><ion-select
+        [interfaceOptions]="customPopupF"
+        interface="popover"
+        [(ngModel)]="face"
+        placeholder="South"
+      >
+        <ion-select-option *ngFor="let f of Face" value="{{f.name}}"
+          >{{f.name}}
+        </ion-select-option>
+      </ion-select>
+    </ion-col>
+  </ion-row>
+
+  <!-- Table surface and robot icon -->
+  <div class="tableSurface">
+    <div>
+      <!-- adding board sizing for mobile screen -->
+      <img class="table" src="../../assets/board.png" />
+      <!-- adding css dynamically from ts file -->
+      <div
+        class="toy"
+        [style.left]="moveX"
+        [style.top]="moveY"
+        [class]="classDirection"
+      ></div>
+    </div>
+  </div>
+  <hr color="lightgrey" />
+  <ion-row>
+    <ion-button (click)="placeRobot()">Place X,Y,F</ion-button>
+    <ion-label class="reportStyle">{{reportLog}}</ion-label>
+  </ion-row>
+  <hr color="lightgrey" />
+  <ion-row>
+    <ion-col size="4">
+      <!-- for Left turn -->
+      <ion-button color="secondary" (click)="leftSwitch()">Left</ion-button>
+    </ion-col>
+    <ion-col size="4">
+      <!-- for Move forward  -->
+      <ion-button color="primary" (click)="move()">Move</ion-button>
+    </ion-col>
+    <ion-col size="4">
+      <!-- for Right turn -->
+      <ion-button color="secondary" (click)="rightSwitch()">Right</ion-button>
+    </ion-col>
+  </ion-row>
+</ion-content>
